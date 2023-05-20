@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://de66pkpkp3mme"]
+
+[ext_resource type="Script" path="res://scenes/enemy/enemy.gd" id="1_air5h"]
+[ext_resource type="Texture2D" uid="uid://dmryrpwt24v2t" path="res://assets/enemy/character_0015.png" id="2_ihw6k"]
+[ext_resource type="Texture2D" uid="uid://djfp5kijj25p2" path="res://assets/enemy/character_0016.png" id="3_iwe5a"]
+[ext_resource type="Texture2D" uid="uid://b3klq3yh2x71f" path="res://assets/enemy/character_0017.png" id="4_ngdsk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygfuj"]
+size = Vector2(10, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6a3g7"]
+radius = 5.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fu5vm"]
+radius = 9.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rmcbg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ihw6k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_iwe5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ngdsk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_air5h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_ygfuj")
+
+[node name="GoalDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalDetector"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_ygfuj")
+
+[node name="HazardArea" type="Area2D" parent="."]
+collision_layer = 4096
+collision_mask = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_6a3g7")
+
+[node name="HitboxArea" type="Area2D" parent="."]
+position = Vector2(0, -5)
+disable_mode = 1
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_fu5vm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_rmcbg")
+autoplay = "default"
+frame_progress = 0.704488
