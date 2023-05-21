@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://5gjmud1anqo"]
+
+[ext_resource type="Script" path="res://scenes/ui/screen_transition.gd" id="1_h4bg2"]
+[ext_resource type="Shader" path="res://scenes/ui/screen_transition.gdshader" id="2_k0yke"]
+[ext_resource type="Texture2D" uid="uid://bum5wg1q63o" path="res://assets/ui/screen-wipe.png" id="3_04kh6"]
+
+[sub_resource type="Animation" id="Animation_eblg4"]
+resource_name = "transition"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emit_screen_covered"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hh6eo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aalrd"]
+_data = {
+"RESET": SubResource("Animation_hh6eo"),
+"transition": SubResource("Animation_eblg4")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bhsad"]
+shader = ExtResource("2_k0yke")
+shader_parameter/percent = 1.0
+shader_parameter/wipeImage = ExtResource("3_04kh6")
+
+[node name="ScreenTransition" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_h4bg2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "transition"
+libraries = {
+"": SubResource("AnimationLibrary_aalrd")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+top_level = true
+material = SubResource("ShaderMaterial_bhsad")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

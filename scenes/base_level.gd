@@ -6,6 +6,7 @@ signal coin_total_changed
 @export var LevelCompleteScene: PackedScene
 
 var playerScene = preload("res://scenes/player/player.tscn")
+var pauseScene = preload("res://scenes/ui/PauseMenu.tscn")
 var spawnPos = Vector2.ZERO
 var currentPlayerNode = null
 
@@ -13,8 +14,8 @@ var coins_total = 0
 var coins_current = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	spawnPos = $Player.global_position
-	register_player($Player)
+	spawnPos = $PlayerRoot/Player.global_position
+	register_player($PlayerRoot/Player)
 	var initial_coins = get_tree().get_nodes_in_group("coins").size()
 	on_coin_total_changed(initial_coins)
 	$Flag/Flag.connect("player_won", on_player_won)
@@ -31,21 +32,30 @@ func on_coin_total_changed(coins_count: int):
 
 func register_player(player):
 	currentPlayerNode = player
-	currentPlayerNode.connect("died", on_player_died, CONNECT_DEFERRED)
+	currentPlayerNode.connect("died", on_player_died)
 
 	
 func create_player():
 	var playerInstance = playerScene.instantiate()
-	currentPlayerNode.add_sibling(playerInstance)
+	$PlayerRoot.add_child(playerInstance)
 	playerInstance.global_position = spawnPos
 	register_player(playerInstance)
 	
 
 func on_player_died():
-	currentPlayerNode.queue_free()
-	create_player()
+	if currentPlayerNode != null:
+		currentPlayerNode.queue_free()
+		var timer = get_tree().create_timer(2)
+		await timer.timeout
+		create_player()
 
 func on_player_won():
 	currentPlayerNode.queue_free()
 	var levelcompletescene = LevelCompleteScene.instantiate()
 	add_child(levelcompletescene)
+	
+func _unhandled_input(event):
+	if event.is_action_pressed("pause"):
+		var pauseInstance = pauseScene.instantiate()
+		add_child(pauseInstance)
+		

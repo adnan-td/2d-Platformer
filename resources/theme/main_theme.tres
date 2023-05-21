@@ -1,6 +1,40 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ciyq1jq3i4s2u"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://ciyq1jq3i4s2u"]
 
+[ext_resource type="Texture2D" uid="uid://q6eu72suq2mw" path="res://assets/button/tile_0009.png" id="1_c1s3a"]
 [ext_resource type="FontFile" uid="uid://dn333xnhxxlpb" path="res://resources/font/BitPotion.ttf" id="1_e6jsr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06gb2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cgelx"]
+texture = ExtResource("1_c1s3a")
+texture_margin_left = 5.0
+texture_margin_top = 7.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1mwu6"]
+load_path = "res://.godot/imported/tile_0029.png-ab6939bb921864f96e6fe3f1132d7378.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fybe6"]
+texture = SubResource("CompressedTexture2D_1mwu6")
+texture_margin_left = 5.0
+texture_margin_top = 7.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(0, 0, 18, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qeoef"]
+texture = SubResource("CompressedTexture2D_1mwu6")
+texture_margin_left = 5.0
+texture_margin_top = 7.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(0, 0, 18, 18)
+modulate_color = Color(0.478431, 0.478431, 0.478431, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_waspe"]
 content_margin_left = 0.0
@@ -17,13 +51,13 @@ corner_detail = 5
 [resource]
 default_font = ExtResource("1_e6jsr")
 default_font_size = 16
-Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
-Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_color = Color(0.435294, 0.243137, 0.262745, 1)
+Button/colors/font_disabled_color = Color(0.87451, 0.87451, 0.87451, 0.501961)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/font_outline_color = Color(1, 1, 1, 1)
-Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(0.207843, 0.101961, 0.113725, 1)
 Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
 Button/colors/icon_focus_color = Color(1, 1, 1, 1)
 Button/colors/icon_hover_color = Color(1, 1, 1, 1)
@@ -33,10 +67,10 @@ Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 2
 Button/constants/outline_size = 0
 Button/styles/disabled = null
-Button/styles/focus = null
-Button/styles/hover = null
-Button/styles/normal = null
-Button/styles/pressed = null
+Button/styles/focus = SubResource("StyleBoxEmpty_06gb2")
+Button/styles/hover = SubResource("StyleBoxTexture_cgelx")
+Button/styles/normal = SubResource("StyleBoxTexture_fybe6")
+Button/styles/pressed = SubResource("StyleBoxTexture_qeoef")
 MarginContainer/constants/margin_bottom = 9
 MarginContainer/constants/margin_left = 9
 MarginContainer/constants/margin_right = 9

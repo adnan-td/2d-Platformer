@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cscth4a3ibslm"]
+[gd_scene load_steps=9 format=3 uid="uid://cscth4a3ibslm"]
 
 [ext_resource type="Script" path="res://scenes/base_level.gd" id="1_irbkx"]
 [ext_resource type="TileSet" uid="uid://t1s8s380wl6a" path="res://resources/tile_set.tres" id="1_mgw7p"]
-[ext_resource type="PackedScene" uid="uid://e4gt07fenly2" path="res://scenes/ui/level_complete.tscn" id="2_3o8qq"]
+[ext_resource type="PackedScene" uid="uid://ty2bljfjdxtx" path="res://scenes/ui/level_complete.tscn" id="2_3o8qq"]
 [ext_resource type="PackedScene" uid="uid://dohyci5u6uyxq" path="res://scenes/ui/level_ui.tscn" id="2_lv6fv"]
 [ext_resource type="PackedScene" uid="uid://xu6pfa7jjjtk" path="res://scenes/player/player.tscn" id="2_v0ayr"]
 [ext_resource type="PackedScene" uid="uid://bse805y7p5hik" path="res://scenes/GameCamera.tscn" id="3_c05yu"]
+[ext_resource type="PackedScene" uid="uid://d015xhfplf6hh" path="res://scenes/clouds/clouds.tscn" id="5_av2fe"]
 [ext_resource type="PackedScene" uid="uid://ci3oytsmppxto" path="res://scenes/flag/flag.tscn" id="5_lwm7n"]
 
 [node name="BaseLevel" type="Node" groups=["base_level"]]
@@ -14,13 +15,15 @@ LevelCompleteScene = ExtResource("2_3o8qq")
 
 [node name="LevelUi" parent="." instance=ExtResource("2_lv6fv")]
 
+[node name="GameCamera" parent="." instance=ExtResource("3_c05yu")]
+
+[node name="Clouds" parent="GameCamera" instance=ExtResource("5_av2fe")]
+
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
 tile_set = ExtResource("1_mgw7p")
 cell_quadrant_size = 18
 format = 2
-
-[node name="GameCamera" parent="." instance=ExtResource("3_c05yu")]
 
 [node name="Flag" type="Node" parent="."]
 
@@ -36,5 +39,7 @@ format = 2
 
 [node name="EnemyGoals" type="Node" parent="Enemies"]
 
-[node name="Player" parent="." instance=ExtResource("2_v0ayr")]
+[node name="PlayerRoot" type="Node2D" parent="."]
+
+[node name="Player" parent="PlayerRoot" instance=ExtResource("2_v0ayr")]
 position = Vector2(0, 11)

@@ -11,11 +11,17 @@ func _ready():
 func _process(delta):
 	aquireTargetPosition()
 	global_position = lerp(targetPosition, global_position, pow(2, -30 * delta))
-	pass
 	
 	
 func aquireTargetPosition():
-	var playerGroup = get_tree().get_nodes_in_group("player")
-	if playerGroup.size() > 0:
-		var player = playerGroup[0]
+	if !get_target_position_from_node_group("player"):
+		get_target_position_from_node_group("player_death")
+
+
+func get_target_position_from_node_group(group_name: String):
+	var group = get_tree().get_nodes_in_group(group_name)
+	if group.size() > 0:
+		var player = group[0]
 		targetPosition = player.global_position
+		return true
+	return false	

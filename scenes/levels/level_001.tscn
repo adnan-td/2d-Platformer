@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://clltpcm766kjo"]
+[gd_scene load_steps=6 format=3 uid="uid://clltpcm766kjo"]
 
 [ext_resource type="PackedScene" uid="uid://cscth4a3ibslm" path="res://scenes/base_level.tscn" id="1_lxpfq"]
 [ext_resource type="PackedScene" uid="uid://d1p6cu6ygdir0" path="res://scenes/collectibles/coins/coin.tscn" id="2_mi8y8"]
-[ext_resource type="PackedScene" uid="uid://de66pkpkp3mme" path="res://scenes/enemy/enemy.tscn" id="2_qwn3h"]
 [ext_resource type="PackedScene" uid="uid://bnmqt7b1f2e1c" path="res://scenes/spikes.tscn" id="3_ia4xk"]
 [ext_resource type="PackedScene" uid="uid://d35lcn387hkot" path="res://scenes/enemy/enemy_goal.tscn" id="3_uwycb"]
 [ext_resource type="PackedScene" uid="uid://wd115nu5qxiu" path="res://scenes/Spawner/enemy_spawner.tscn" id="7_e7fqb"]
@@ -39,34 +38,37 @@ position = Vector2(261, 99)
 [node name="Coin7" parent="Collectibles/Coins" index="7" instance=ExtResource("2_mi8y8")]
 position = Vector2(504, 135)
 
-[node name="Coin9" parent="Collectibles/Coins" index="8" instance=ExtResource("2_mi8y8")]
+[node name="Coin17" parent="Collectibles/Coins" index="8" instance=ExtResource("2_mi8y8")]
+position = Vector2(486, 135)
+
+[node name="Coin9" parent="Collectibles/Coins" index="9" instance=ExtResource("2_mi8y8")]
 position = Vector2(-684, 45)
 
-[node name="Coin15" parent="Collectibles/Coins" index="9" instance=ExtResource("2_mi8y8")]
+[node name="Coin15" parent="Collectibles/Coins" index="10" instance=ExtResource("2_mi8y8")]
 position = Vector2(-684, 27)
 
-[node name="Coin14" parent="Collectibles/Coins" index="10" instance=ExtResource("2_mi8y8")]
+[node name="Coin14" parent="Collectibles/Coins" index="11" instance=ExtResource("2_mi8y8")]
 position = Vector2(-702, 45)
 
-[node name="Coin10" parent="Collectibles/Coins" index="11" instance=ExtResource("2_mi8y8")]
+[node name="Coin10" parent="Collectibles/Coins" index="12" instance=ExtResource("2_mi8y8")]
 position = Vector2(-666, 45)
 
-[node name="Coin16" parent="Collectibles/Coins" index="12" instance=ExtResource("2_mi8y8")]
+[node name="Coin16" parent="Collectibles/Coins" index="13" instance=ExtResource("2_mi8y8")]
 position = Vector2(-666, 27)
 
-[node name="Coin11" parent="Collectibles/Coins" index="13" instance=ExtResource("2_mi8y8")]
+[node name="Coin11" parent="Collectibles/Coins" index="14" instance=ExtResource("2_mi8y8")]
 position = Vector2(-648, 45)
 
-[node name="Coin18" parent="Collectibles/Coins" index="14" instance=ExtResource("2_mi8y8")]
+[node name="Coin18" parent="Collectibles/Coins" index="15" instance=ExtResource("2_mi8y8")]
 position = Vector2(-648, 27)
 
-[node name="Coin12" parent="Collectibles/Coins" index="15" instance=ExtResource("2_mi8y8")]
+[node name="Coin12" parent="Collectibles/Coins" index="16" instance=ExtResource("2_mi8y8")]
 position = Vector2(-630, 45)
 
-[node name="Coin19" parent="Collectibles/Coins" index="16" instance=ExtResource("2_mi8y8")]
+[node name="Coin19" parent="Collectibles/Coins" index="17" instance=ExtResource("2_mi8y8")]
 position = Vector2(-630, 27)
 
-[node name="Coin13" parent="Collectibles/Coins" index="17" instance=ExtResource("2_mi8y8")]
+[node name="Coin13" parent="Collectibles/Coins" index="18" instance=ExtResource("2_mi8y8")]
 position = Vector2(-612, 45)
 
 [node name="Spikes4" parent="Traps" index="0" instance=ExtResource("3_ia4xk")]
@@ -145,15 +147,24 @@ position = Vector2(-792, 54)
 [node name="EnemyGoal6" parent="Enemies/EnemyGoals" index="5" instance=ExtResource("3_uwycb")]
 position = Vector2(-513, 54)
 
-[node name="Enemy" parent="Enemies" index="1" instance=ExtResource("2_qwn3h")]
-position = Vector2(540, 216)
-
-[node name="Enemy2" parent="Enemies" index="2" instance=ExtResource("2_qwn3h")]
-position = Vector2(378, 198)
-
-[node name="EnemySpawner" parent="Enemies" index="3" instance=ExtResource("7_e7fqb")]
+[node name="EnemySpawner" parent="Enemies" index="1" instance=ExtResource("7_e7fqb")]
 position = Vector2(-657, 45)
 direction = 1
 
-[node name="Player" parent="." index="7"]
-position = Vector2(81, 54)
+[node name="EnemySpawner5" parent="Enemies" index="2" instance=ExtResource("7_e7fqb")]
+position = Vector2(-756, 45)
+
+[node name="EnemySpawner4" parent="Enemies" index="3" instance=ExtResource("7_e7fqb")]
+position = Vector2(-558, 45)
+
+[node name="EnemySpawner2" parent="Enemies" index="4" instance=ExtResource("7_e7fqb")]
+position = Vector2(387, 189)
+
+[node name="EnemySpawner3" parent="Enemies" index="5" instance=ExtResource("7_e7fqb")]
+position = Vector2(540, 207)
+
+[node name="PlayerRoot" parent="." index="7"]
+position = Vector2(25, 53)
+
+[node name="Player" parent="PlayerRoot" index="0"]
+position = Vector2(11, -17)

@@ -1,8 +1,29 @@
-[gd_scene load_steps=9 format=3 uid="uid://xu6pfa7jjjtk"]
+[gd_scene load_steps=16 format=3 uid="uid://xu6pfa7jjjtk"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_wpcda"]
 [ext_resource type="Texture2D" uid="uid://db5dnw32kdutu" path="res://assets/player/character_0002.png" id="2_sijx1"]
+[ext_resource type="PackedScene" uid="uid://dmw65wq2fyyeg" path="res://scenes/player/player_death.tscn" id="2_uckqf"]
 [ext_resource type="Texture2D" uid="uid://yjufcyo5qm6t" path="res://assets/player/character_0003.png" id="3_10vfy"]
+[ext_resource type="PackedScene" uid="uid://dnhrgbbbjprnf" path="res://scenes/footstepparticle/FootstepParticles.tscn" id="3_egl4p"]
+[ext_resource type="Shader" path="res://scenes/player/player.gdshader" id="5_n3vo5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cwtp1"]
+shader = ExtResource("5_n3vo5")
+shader_parameter/baseColor = Color(0.603922, 0.768627, 0.968627, 1)
+
+[sub_resource type="Curve" id="Curve_kh8vg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lyeyn"]
+curve = SubResource("Curve_kh8vg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ltho6"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_lyeyn")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftoqa"]
 radius = 16.0
@@ -52,7 +73,19 @@ collision_layer = 0
 script = ExtResource("1_wpcda")
 JUMP_VELOCITY = -300.0
 JUMP_TERMINATION_MULTIPLIER = 2
+PLAYER_DEATH_SCENE = ExtResource("2_uckqf")
 DASH_HAZARD_MASK = 16384
+footstepParticles = ExtResource("3_egl4p")
+
+[node name="DashParticles" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_cwtp1")
+position = Vector2(0, -11)
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_ltho6")
+texture = ExtResource("2_sijx1")
+lifetime = 0.4
 
 [node name="CoinPickupArea" type="Area2D" parent="."]
 collision_layer = 32768

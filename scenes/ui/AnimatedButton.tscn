@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://ooqsmbio75ea"]
+
+[ext_resource type="Theme" uid="uid://ciyq1jq3i4s2u" path="res://resources/theme/main_theme.tres" id="1"]
+[ext_resource type="Script" path="res://scenes/UI/AnimatedButton.gd" id="2"]
+
+[sub_resource type="Animation" id="1"]
+resource_local_to_scene = true
+resource_name = "hover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(96, 24), Vector2(112, 24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(96, 24), Vector2(112, 24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3mqvc"]
+_data = {
+"hover": SubResource("1")
+}
+
+[sub_resource type="Animation" id="2"]
+resource_local_to_scene = true
+resource_name = "click"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0523599, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_07nd1"]
+_data = {
+"click": SubResource("2")
+}
+
+[node name="AnimatedButton" type="Button" groups=["animated_button"]]
+custom_minimum_size = Vector2(96, 24)
+offset_right = 96.0
+offset_bottom = 24.0
+pivot_offset = Vector2(48, 12)
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("1")
+text = "TEST TEXT"
+script = ExtResource("2")
+
+[node name="HoverAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3mqvc")
+}
+
+[node name="ClickAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_07nd1")
+}

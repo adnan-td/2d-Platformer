@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5ha26dowx1fi"]
+
+[ext_resource type="Texture2D" uid="uid://dwnouu12gm6kn" path="res://assets/coin/tile_0151.png" id="1_o2fq1"]
+[ext_resource type="Script" path="res://scenes/ui/coin_counter.gd" id="1_opqc1"]
+[ext_resource type="Texture2D" uid="uid://cpmdbhj2jhdje" path="res://assets/coin/tile_0152.png" id="2_yqdrg"]
+[ext_resource type="Theme" uid="uid://ciyq1jq3i4s2u" path="res://resources/theme/main_theme.tres" id="3_ebywq"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_jcmk5"]
+frames = 2
+frame_0/texture = ExtResource("1_o2fq1")
+frame_1/texture = ExtResource("2_yqdrg")
+frame_1/duration = 1.0
+
+[node name="CoinCounter" type="HBoxContainer"]
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 1
+script = ExtResource("1_opqc1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource("AnimatedTexture_jcmk5")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_ebywq")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "10/32"
+vertical_alignment = 1

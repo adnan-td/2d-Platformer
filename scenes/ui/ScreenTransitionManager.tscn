@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgxkflu0s6w2n"]
+
+[ext_resource type="Script" path="res://scenes/ui/ScreenTransitionManager.gd" id="1_j5mpl"]
+[ext_resource type="PackedScene" uid="uid://5gjmud1anqo" path="res://scenes/ui/screen_transition.tscn" id="2_t331r"]
+
+[node name="ScreenTransitionManager" type="Node"]
+script = ExtResource("1_j5mpl")
+screenTransitionScene = ExtResource("2_t331r")

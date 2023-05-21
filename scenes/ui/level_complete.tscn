@@ -1,82 +1,89 @@
-[gd_scene load_steps=11 format=3 uid="uid://e4gt07fenly2"]
+[gd_scene load_steps=7 format=3 uid="uid://ty2bljfjdxtx"]
 
-[ext_resource type="Script" path="res://scenes/ui/level_complete.gd" id="1_31ugm"]
-[ext_resource type="Theme" uid="uid://ciyq1jq3i4s2u" path="res://resources/theme/main_theme.tres" id="1_vy1dp"]
-[ext_resource type="Texture2D" uid="uid://q6eu72suq2mw" path="res://assets/button/tile_0009.png" id="3_28pls"]
-[ext_resource type="FontFile" uid="uid://dn333xnhxxlpb" path="res://resources/font/BitPotion.ttf" id="3_e5nw5"]
+[ext_resource type="Script" path="res://scenes/ui/level_complete.gd" id="1_7lvoh"]
+[ext_resource type="PackedScene" uid="uid://b5ha26dowx1fi" path="res://scenes/ui/coin_counter.tscn" id="2_dokai"]
+[ext_resource type="Script" path="res://scenes/ui/PanelContainer.gd" id="2_yw73q"]
+[ext_resource type="PackedScene" uid="uid://ooqsmbio75ea" path="res://scenes/UI/AnimatedButton.tscn" id="4"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_2f303"]
-line_spacing = 2.0
-font = ExtResource("3_e5nw5")
-font_size = 15
+[sub_resource type="Animation" id="1"]
+resource_name = "default"
+length = 0.9
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/PanelContainer:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1e-05, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1, 1), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1mwu6"]
-load_path = "res://.godot/imported/tile_0029.png-ab6939bb921864f96e6fe3f1132d7378.ctex"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2ohtd"]
-texture = SubResource("CompressedTexture2D_1mwu6")
-texture_margin_left = 5.0
-texture_margin_top = 7.0
-texture_margin_right = 5.0
-texture_margin_bottom = 5.0
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
-region_rect = Rect2(0, 0, 18, 18)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6w0th"]
-texture = ExtResource("3_28pls")
-texture_margin_left = 5.0
-texture_margin_top = 7.0
-texture_margin_right = 5.0
-texture_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_glc1n"]
-texture = SubResource("CompressedTexture2D_1mwu6")
-texture_margin_left = 5.0
-texture_margin_top = 7.0
-texture_margin_right = 5.0
-texture_margin_bottom = 5.0
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
-region_rect = Rect2(0, 0, 18, 18)
-modulate_color = Color(0.478431, 0.478431, 0.478431, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dcrku"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_60f34"]
+_data = {
+"default": SubResource("1")
+}
 
 [node name="LevelComplete" type="CanvasLayer"]
-script = ExtResource("1_31ugm")
+script = ExtResource("1_7lvoh")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-offset_left = 205.0
-offset_top = 112.0
-offset_right = 275.0
-offset_bottom = 157.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("1_vy1dp")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_60f34")
+}
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-layout_mode = 2
-theme = ExtResource("1_vy1dp")
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("2_yw73q")
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(112, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Level Complete!"
-label_settings = SubResource("LabelSettings_2f303")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.435294, 0.243137, 0.262745, 1)
-theme_override_colors/font_pressed_color = Color(0.207843, 0.101961, 0.113725, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxTexture_2ohtd")
-theme_override_styles/hover = SubResource("StyleBoxTexture_6w0th")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_glc1n")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dcrku")
-text = "Next Level"
+
+[node name="CoinsCollectedLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Coins collected: "
+
+[node name="CoinCounter" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_dokai")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="RestartButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("4")]
+layout_mode = 2
+text = "RESTART"
+
+[node name="NextLevelButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("4")]
+layout_mode = 2
+text = "NEXT LEVEL"

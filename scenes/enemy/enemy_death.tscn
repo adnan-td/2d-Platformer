@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://dx8wq6syja1bs"]
+
+[ext_resource type="Script" path="res://scenes/enemy/enemy_death.gd" id="1_o8wab"]
+[ext_resource type="Texture2D" uid="uid://djfp5kijj25p2" path="res://assets/enemy/character_0016.png" id="2_ix32p"]
+
+[sub_resource type="Animation" id="Animation_ekvd6"]
+resource_name = "enemy_death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oew81"]
+_data = {
+"enemy_death": SubResource("Animation_ekvd6")
+}
+
+[sub_resource type="Curve" id="Curve_ltpjt"]
+_data = [Vector2(0, 0.954545), 0.0, 0.0, 0, 0, Vector2(0.202586, 0.709091), 0.0, 0.0, 0, 0, Vector2(0.396552, 0.763636), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_lpio0"]
+curve = SubResource("Curve_ltpjt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mayut"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 25.32
+gravity = Vector3(0, 500, 0)
+initial_velocity_min = 164.07
+initial_velocity_max = 218.75
+angular_velocity_min = 180.0
+angular_velocity_max = 360.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.7
+scale_curve = SubResource("CurveTexture_lpio0")
+
+[node name="EnemyDeath" type="Node2D"]
+script = ExtResource("1_o8wab")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "enemy_death"
+libraries = {
+"": SubResource("AnimationLibrary_oew81")
+}
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -12)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_mayut")
+texture = ExtResource("2_ix32p")
+lifetime = 0.75
+one_shot = true
