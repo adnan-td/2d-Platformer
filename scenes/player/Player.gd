@@ -32,9 +32,9 @@ func _ready():
 func _physics_process(delta):
 	match currentState:
 		State.NORMAL:
-			velocity = process_normal(delta, velocity)
+			process_normal(delta)
 		State.DASHING:
-			velocity = process_dashing(delta)
+			process_dashing(delta)
 			
 	isStateNew = false
 	
@@ -62,9 +62,8 @@ func process_dashing(delta):
 	if abs(velocity.x) < MIN_DASHSPEED:
 		call_deferred("change_state", State.NORMAL)
 		
-	return velocity
 
-func process_normal(delta, velocity: Vector2):
+func process_normal(delta):
 	if isStateNew:
 		$DashParticles.emitting = false
 		$HazardArea.collision_mask = defaultHazardMask
@@ -100,7 +99,6 @@ func process_normal(delta, velocity: Vector2):
 		hasDash = false 
 		
 	updateAnimation()
-	return velocity
 
 func _process(_delta):	
 	var was_on_floor = is_on_floor()
@@ -142,10 +140,10 @@ func kill():
 func on_hazard_area_enter(area2d):
 	call_deferred("kill")
 	
-func spawn_footsteps(scale = 1):
+func spawn_footsteps(scale_particle:float = 1.0):
 	var footstep = footstepParticles.instantiate()
 	get_parent().add_child(footstep)
-	footstep.scale = Vector2.ONE * scale
+	footstep.scale = Vector2.ONE * scale_particle
 	footstep.global_position = global_position
 	
 func on_animated_sprite_frame_changed():

@@ -31,12 +31,12 @@ func get_bus_volume_percent(busName):
 	return volumePercent
 
 func update_initial_volume_settings():
-	return
-	var musicPercent = get_bus_volume_percent("Music")
+	#var musicPercent = get_bus_volume_percent("Music")
 	#musicRangeControl.set_current_percentage(musicPercent)
 	
-	var sfxPercent = get_bus_volume_percent("SFX")
+	#var sfxPercent = get_bus_volume_percent("SFX")
 	#sfxRangeControl.set_current_percentage(sfxPercent)
+	pass
 
 
 func on_window_mode_pressed():
