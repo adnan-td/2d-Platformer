@@ -13,7 +13,9 @@ config_version=5
 config/name="2d Platformer"
 run/main_scene="res://scenes/ui/MainMenu.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
+boot_splash/image="res://icon.png"
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
