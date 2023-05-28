@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ooqsmbio75ea"]
+[gd_scene load_steps=8 format=3 uid="uid://ooqsmbio75ea"]
 
 [ext_resource type="Theme" uid="uid://ciyq1jq3i4s2u" path="res://resources/theme/main_theme.tres" id="1"]
 [ext_resource type="Script" path="res://scenes/UI/AnimatedButton.gd" id="2"]
 [ext_resource type="AudioStream" uid="uid://brqu033hssms0" path="res://assets/sounds/click_002.ogg" id="3_jhyvp"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrg1"]
-size = Vector2(96, 25)
 
 [sub_resource type="Animation" id="1"]
 resource_local_to_scene = true
@@ -75,12 +72,6 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("1")
 text = "TEST TEXT"
 script = ExtResource("2")
-
-[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-visible = false
-position = Vector2(48, 12)
-shape = SubResource("RectangleShape2D_onrg1")
-passby_press = true
 
 [node name="HoverAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

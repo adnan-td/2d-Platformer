@@ -102,6 +102,7 @@ shape = SubResource("RectangleShape2D_mbhjm")
 action = "jump"
 
 [node name="Container" type="MarginContainer" parent="MarginContainer"]
+visible = false
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 8
