@@ -25,7 +25,7 @@ tile_set = ExtResource("1_mgw7p")
 cell_quadrant_size = 18
 format = 2
 
-[node name="Flag" type="Node" parent="."]
+[node name="Flag" type="Node" parent="." groups=["flag"]]
 
 [node name="Flag" parent="Flag" instance=ExtResource("5_lwm7n")]
 

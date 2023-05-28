@@ -1,8 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1p6cu6ygdir0"]
+[gd_scene load_steps=16 format=3 uid="uid://d1p6cu6ygdir0"]
 
 [ext_resource type="Script" path="res://scenes/collectibles/coins/coin.gd" id="1_qka0m"]
+[ext_resource type="PackedScene" uid="uid://bisghg2y443s" path="res://scenes/audio/random_audio_stream_player.tscn" id="2_abqot"]
 [ext_resource type="Texture2D" uid="uid://dwnouu12gm6kn" path="res://assets/coin/tile_0151.png" id="2_hkf8l"]
+[ext_resource type="AudioStream" uid="uid://cbn2vjafmx46t" path="res://assets/sounds/glass_004.ogg" id="3_rm5f7"]
 [ext_resource type="Texture2D" uid="uid://cpmdbhj2jhdje" path="res://assets/coin/tile_0152.png" id="3_rv53d"]
+[ext_resource type="AudioStream" uid="uid://de7s1mpdcg7cn" path="res://assets/sounds/impactGlass_heavy_000.ogg" id="4_rwi1u"]
+[ext_resource type="AudioStream" uid="uid://c0ahg2satltud" path="res://assets/sounds/impactGlass_heavy_001.ogg" id="5_mul7n"]
+[ext_resource type="AudioStream" uid="uid://c0ycg523io3" path="res://assets/sounds/impactGlass_heavy_002.ogg" id="6_4wxup"]
+[ext_resource type="AudioStream" uid="uid://bd0qr8tik7kv1" path="res://assets/sounds/impactGlass_heavy_003.ogg" id="7_3u8cj"]
+[ext_resource type="AudioStream" uid="uid://dmqrdpxuehaex" path="res://assets/sounds/impactGlass_heavy_004.ogg" id="8_gfoy1"]
 
 [sub_resource type="Animation" id="Animation_gf4po"]
 resource_name = "idle"
@@ -87,6 +94,36 @@ animations = [{
 
 [node name="Coin" type="Node2D" groups=["coins"]]
 script = ExtResource("1_qka0m")
+
+[node name="RandomAudioStreamPlayer" parent="." instance=ExtResource("2_abqot")]
+minPitchScale = 0.8
+maxPitchScale = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="RandomAudioStreamPlayer"]
+stream = ExtResource("3_rm5f7")
+volume_db = -10.0
+
+[node name="RandomAudioStreamPlayer2" parent="." instance=ExtResource("2_abqot")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="RandomAudioStreamPlayer2"]
+stream = ExtResource("4_rwi1u")
+volume_db = -12.0
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="RandomAudioStreamPlayer2"]
+stream = ExtResource("5_mul7n")
+volume_db = -12.0
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="RandomAudioStreamPlayer2"]
+stream = ExtResource("6_4wxup")
+volume_db = -12.0
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="RandomAudioStreamPlayer2"]
+stream = ExtResource("7_3u8cj")
+volume_db = -12.0
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="RandomAudioStreamPlayer2"]
+stream = ExtResource("8_gfoy1")
+volume_db = -12.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"

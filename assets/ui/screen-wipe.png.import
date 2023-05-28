@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bum5wg1q63o"
 path.s3tc="res://.godot/imported/screen-wipe.png-5609cb7b230351b29fc306432ebb8059.s3tc.ctex"
+path.etc2="res://.godot/imported/screen-wipe.png-5609cb7b230351b29fc306432ebb8059.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/ui/screen-wipe.png"
-dest_files=["res://.godot/imported/screen-wipe.png-5609cb7b230351b29fc306432ebb8059.s3tc.ctex"]
+dest_files=["res://.godot/imported/screen-wipe.png-5609cb7b230351b29fc306432ebb8059.s3tc.ctex", "res://.godot/imported/screen-wipe.png-5609cb7b230351b29fc306432ebb8059.etc2.ctex"]
 
 [params]
 

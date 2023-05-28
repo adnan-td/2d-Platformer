@@ -9,3 +9,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func on_area_entered(_area2d):
 	emit_signal("player_won")
+	$ConfettiParticles.emitting = true
+	$AudioStreamPlayer.play()
+	$Confetti.play()

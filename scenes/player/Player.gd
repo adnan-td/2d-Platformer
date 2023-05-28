@@ -12,7 +12,7 @@ signal died
 @export_flags_2d_physics var DASH_HAZARD_MASK
 @export var footstepParticles: PackedScene
 
-enum State {NORMAL, DASHING}
+enum State {NORMAL, DASHING, DISABLED}
 
 
 var playerDeathInstance = null
@@ -35,15 +35,24 @@ func _physics_process(delta):
 			process_normal(delta)
 		State.DASHING:
 			process_dashing(delta)
+		State.DISABLED:
+			process_disabled(delta)
 			
 	isStateNew = false
 	
 func change_state(newState: State):
 	currentState = newState
 	isStateNew = true
+	
+func process_disabled(delta):
+	if isStateNew:
+		$AnimatedSprite2D.play("idle")
+	velocity.x = lerp(0.0, velocity.x, pow(2, -8 * delta))
+	velocity.y += gravity * delta
 
 func process_dashing(delta):
 	if isStateNew:
+		$DashAudioPlayer.play()
 		$DashParticles.emitting = true
 		$HazardArea.collision_mask = DASH_HAZARD_MASK
 		$DashArea/CollisionShape2D.disabled = false
@@ -116,6 +125,11 @@ func get_movement_vector():
 	moveVector.x = Input.get_axis("move_left", "move_right")
 	moveVector.y = -1 if Input.is_action_just_pressed("jump") else 0
 	return moveVector
+	
+	
+func disable_player_input():
+	change_state(State.DISABLED)
+
 
 func updateAnimation():
 	var moveVec = get_movement_vector()
@@ -145,6 +159,7 @@ func spawn_footsteps(scale_particle:float = 1.0):
 	get_parent().add_child(footstep)
 	footstep.scale = Vector2.ONE * scale_particle
 	footstep.global_position = global_position
+	$FootstepAudioPlayer.play()
 	
 func on_animated_sprite_frame_changed():
 	if ($AnimatedSprite2D.animation == "run" && $AnimatedSprite2D.frame == 0):

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjrf0jwllmpur"]
+[gd_scene load_steps=8 format=3 uid="uid://cjrf0jwllmpur"]
 
 [ext_resource type="Theme" uid="uid://ciyq1jq3i4s2u" path="res://resources/theme/main_theme.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://ooqsmbio75ea" path="res://scenes/ui/AnimatedButton.tscn" id="2"]
 [ext_resource type="Script" path="res://scenes/ui/OptionsMenu.gd" id="3"]
 [ext_resource type="Script" path="res://scenes/ui/PanelContainer.gd" id="3_us3ng"]
+[ext_resource type="PackedScene" uid="uid://lau46yg8247q" path="res://scenes/ui/volume_slider.tscn" id="5_nwyou"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "default"
@@ -78,21 +79,21 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "WINDOWED"
 
-[node name="MusicVolumeContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MusicVolumeContainer"]
+[node name="MusicLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Music Volume"
 
-[node name="SFXVolumeContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
+[node name="MusicSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_nwyou")]
 layout_mode = 2
+busName = "Music"
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SFXVolumeContainer"]
+[node name="SfxLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "SFX Volume"
+
+[node name="SfxSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_nwyou")]
+layout_mode = 2
+busName = "SFX"
 
 [node name="BackButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("2")]
 layout_mode = 2

@@ -8,6 +8,9 @@ const JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
+	$DeathSound1.play()
+	$DeathSound2.play()
+	$DeathSound3.play()
 	if velocity.x > 0:
 		$Visuals.scale = Vector2(-1, 1)
 		

@@ -1,9 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://ci3oytsmppxto"]
+[gd_scene load_steps=21 format=3 uid="uid://ci3oytsmppxto"]
 
 [ext_resource type="Texture2D" uid="uid://cghqmwr50mikg" path="res://assets/flag/tile_0131.png" id="1_a2431"]
 [ext_resource type="Script" path="res://scenes/flag/flag.gd" id="1_nn7su"]
+[ext_resource type="AudioStream" uid="uid://dwtivv370a04l" path="res://assets/sounds/jingles_PIZZI10.ogg" id="2_e5xrx"]
 [ext_resource type="Texture2D" uid="uid://d1g3xhsdpp30d" path="res://assets/flag/tile_0111.png" id="2_q1iee"]
 [ext_resource type="Texture2D" uid="uid://u7vb207utkt5" path="res://assets/flag/tile_0112.png" id="3_et0bm"]
+[ext_resource type="PackedScene" uid="uid://bisghg2y443s" path="res://scenes/audio/random_audio_stream_player.tscn" id="3_lxpst"]
+[ext_resource type="AudioStream" uid="uid://2g4uypmnacv8" path="res://assets/sounds/impactPlank_medium_000.ogg" id="4_onu3r"]
+[ext_resource type="AudioStream" uid="uid://4nmekfldhdti" path="res://assets/sounds/impactPlank_medium_001.ogg" id="5_g5sye"]
+[ext_resource type="AudioStream" uid="uid://35thus1dxfiy" path="res://assets/sounds/impactPlank_medium_002.ogg" id="6_cll4o"]
+[ext_resource type="AudioStream" uid="uid://bk3salob3o3tw" path="res://assets/sounds/impactPlank_medium_003.ogg" id="7_pnly4"]
+[ext_resource type="AudioStream" uid="uid://cwp8an4x86nwk" path="res://assets/sounds/impactPlank_medium_004.ogg" id="8_x0dd8"]
+[ext_resource type="Texture2D" uid="uid://c62a2xqcqwxl7" path="res://assets/particles/confetti.png" id="12_d0a6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1hoc"]
 size = Vector2(19, 30)
@@ -22,8 +30,72 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tvo83"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_xd62m"]
+max_value = 300.0
+_data = [Vector2(0, 300), 0.0, 0.0, 0, 0, Vector2(0.284483, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p2eaw"]
+curve = SubResource("Curve_xd62m")
+
+[sub_resource type="Curve" id="Curve_o38su"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0560345, 1), 0.0, 0.0, 0, 0, Vector2(0.538793, 0.918182), 0.0, 0.0, 0, 0, Vector2(0.853448, 0.736364), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_npoiv"]
+curve = SubResource("Curve_o38su")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_62ju1"]
+emission_shape = 1
+emission_sphere_radius = 5.0
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 30.0
+gravity = Vector3(0, 50, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+angular_velocity_max = 360.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_curve = SubResource("CurveTexture_p2eaw")
+scale_min = 1.1
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_npoiv")
+color = Color(0.898039, 0.14902, 0, 1)
+hue_variation_max = 1.0
+anim_speed_min = 2.5
+anim_speed_max = 5.0
+anim_offset_max = 1.0
+
 [node name="Flag" type="Node2D"]
 script = ExtResource("1_nn7su")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_e5xrx")
+bus = &"SFX"
+
+[node name="Confetti" parent="." instance=ExtResource("3_lxpst")]
+
+[node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="Confetti"]
+stream = ExtResource("4_onu3r")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Confetti"]
+stream = ExtResource("5_g5sye")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Confetti"]
+stream = ExtResource("6_cll4o")
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="Confetti"]
+stream = ExtResource("7_pnly4")
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="Confetti"]
+stream = ExtResource("8_x0dd8")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 32768
@@ -42,3 +114,15 @@ position = Vector2(6, -23)
 sprite_frames = SubResource("SpriteFrames_pch1x")
 autoplay = "default"
 frame_progress = 0.215546
+
+[node name="ConfettiParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_tvo83")
+position = Vector2(0, -9)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_62ju1")
+texture = ExtResource("12_d0a6e")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.9
+randomness = 0.5

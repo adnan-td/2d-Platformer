@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2r55evx56ppg"]
+[gd_scene load_steps=8 format=3 uid="uid://dw4l1wue51ve1"]
 
 [ext_resource type="Theme" uid="uid://ciyq1jq3i4s2u" path="res://resources/theme/main_theme.tres" id="1"]
-[ext_resource type="PackedScene" uid="uid://ooqsmbio75ea" path="res://scenes/UI/AnimatedButton.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://ooqsmbio75ea" path="res://scenes/ui/AnimatedButton.tscn" id="2"]
 [ext_resource type="Script" path="res://scenes/UI/MainMenu.gd" id="3"]
-[ext_resource type="PackedScene" uid="uid://ds2oatnj4xeqp" path="res://scenes/UI/MenuBackground.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://ds2oatnj4xeqp" path="res://scenes/ui/MenuBackground.tscn" id="4"]
 [ext_resource type="Script" path="res://scenes/ui/PanelContainer.gd" id="4_rtgqb"]
 
 [sub_resource type="Animation" id="1"]

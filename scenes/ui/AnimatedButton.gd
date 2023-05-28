@@ -23,6 +23,7 @@ func on_mouse_exited():
 	reset_button_state()
 
 func on_pressed():
+	$AudioStreamPlayer.play()
 	$ClickAnimationPlayer.play("click")
 
 func on_focus_exited():

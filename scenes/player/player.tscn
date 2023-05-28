@@ -1,11 +1,23 @@
-[gd_scene load_steps=16 format=3 uid="uid://xu6pfa7jjjtk"]
+[gd_scene load_steps=28 format=3 uid="uid://xu6pfa7jjjtk"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_wpcda"]
 [ext_resource type="Texture2D" uid="uid://db5dnw32kdutu" path="res://assets/player/character_0002.png" id="2_sijx1"]
 [ext_resource type="PackedScene" uid="uid://dmw65wq2fyyeg" path="res://scenes/player/player_death.tscn" id="2_uckqf"]
 [ext_resource type="Texture2D" uid="uid://yjufcyo5qm6t" path="res://assets/player/character_0003.png" id="3_10vfy"]
 [ext_resource type="PackedScene" uid="uid://dnhrgbbbjprnf" path="res://scenes/footstepparticle/FootstepParticles.tscn" id="3_egl4p"]
+[ext_resource type="PackedScene" uid="uid://bisghg2y443s" path="res://scenes/audio/random_audio_stream_player.tscn" id="4_8qpqp"]
 [ext_resource type="Shader" path="res://scenes/player/player.gdshader" id="5_n3vo5"]
+[ext_resource type="AudioStream" uid="uid://b5bg4jygsqyhy" path="res://assets/sounds/footstep_grass_000.ogg" id="5_ssn0y"]
+[ext_resource type="AudioStream" uid="uid://ddt0mpuc1w2x7" path="res://assets/sounds/footstep_grass_001.ogg" id="6_u5vmc"]
+[ext_resource type="AudioStream" uid="uid://cifwawb0n1gmu" path="res://assets/sounds/footstep_grass_002.ogg" id="7_gui2s"]
+[ext_resource type="AudioStream" uid="uid://cligaefr80rh2" path="res://assets/sounds/footstep_grass_003.ogg" id="8_wndaw"]
+[ext_resource type="AudioStream" uid="uid://bdmviqk2yos4y" path="res://assets/sounds/footstep_grass_004.ogg" id="9_wgraa"]
+[ext_resource type="AudioStream" uid="uid://bhu86n4tyrpdn" path="res://assets/sounds/footstep_concrete_000.ogg" id="10_yoti2"]
+[ext_resource type="AudioStream" uid="uid://x615uf7t7ger" path="res://assets/sounds/footstep_concrete_001.ogg" id="11_p4xnx"]
+[ext_resource type="AudioStream" uid="uid://q2hufrctpw7i" path="res://assets/sounds/footstep_concrete_002.ogg" id="12_hjvgf"]
+[ext_resource type="AudioStream" uid="uid://bxm8hxbmfs2nt" path="res://assets/sounds/footstep_concrete_003.ogg" id="13_vc03u"]
+[ext_resource type="AudioStream" uid="uid://e8gyo884kvh0" path="res://assets/sounds/footstep_concrete_004.ogg" id="14_q1501"]
+[ext_resource type="AudioStream" uid="uid://pftb7ktsqx26" path="res://assets/sounds/impactBell_heavy_004.ogg" id="15_kjys1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cwtp1"]
 shader = ExtResource("5_n3vo5")
@@ -77,6 +89,69 @@ PLAYER_DEATH_SCENE = ExtResource("2_uckqf")
 DASH_HAZARD_MASK = 16384
 footstepParticles = ExtResource("3_egl4p")
 
+[node name="FootstepAudioPlayer" parent="." instance=ExtResource("4_8qpqp")]
+numberToPlay = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("5_ssn0y")
+volume_db = 5.0
+bus = &"Footsteps"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("6_u5vmc")
+volume_db = 5.0
+bus = &"Footsteps"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("7_gui2s")
+volume_db = 5.0
+bus = &"Footsteps"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("8_wndaw")
+volume_db = 5.0
+bus = &"Footsteps"
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("9_wgraa")
+volume_db = 5.0
+bus = &"Footsteps"
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("10_yoti2")
+volume_db = 5.0
+bus = &"Footsteps"
+
+[node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("11_p4xnx")
+volume_db = 5.0
+bus = &"Footsteps"
+
+[node name="AudioStreamPlayer8" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("12_hjvgf")
+volume_db = 5.0
+bus = &"Footsteps"
+
+[node name="AudioStreamPlayer9" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("13_vc03u")
+volume_db = 5.0
+bus = &"Footsteps"
+
+[node name="AudioStreamPlayer10" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("14_q1501")
+volume_db = 5.0
+bus = &"Footsteps"
+
+[node name="DashAudioPlayer" parent="." instance=ExtResource("4_8qpqp")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DashAudioPlayer"]
+stream = ExtResource("15_kjys1")
+bus = &"PlayerDash"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="DashAudioPlayer"]
+stream = ExtResource("15_kjys1")
+bus = &"PlayerDash"
+
 [node name="DashParticles" type="GPUParticles2D" parent="."]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_cwtp1")
@@ -125,6 +200,4 @@ shape = SubResource("CapsuleShape2D_7plyo")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -11)
 sprite_frames = SubResource("SpriteFrames_p8m8x")
-animation = &"run"
-frame = 1
-frame_progress = 0.0689456
+animation = &"idle"

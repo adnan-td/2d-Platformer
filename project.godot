@@ -21,6 +21,7 @@ config/windows_native_icon="res://icon.ico"
 
 LevelManager="*res://scenes/level_manager.tscn"
 ScreenTransitionManager="*res://scenes/ui/ScreenTransitionManager.tscn"
+MusicPlayer="*res://scenes/music/music_player.tscn"
 
 [debug]
 
@@ -72,6 +73,10 @@ pause={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [layer_names]
 
 2d_physics/layer_1="Terrain"
@@ -85,3 +90,4 @@ pause={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
