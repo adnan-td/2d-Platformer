@@ -41,7 +41,7 @@ scale_curve = SubResource("CurveTexture_lyeyn")
 radius = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0ahk"]
-size = Vector2(14, 20)
+size = Vector2(14, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erx3m"]
 size = Vector2(10, 21)
@@ -80,8 +80,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 0
+[node name="Player" type="CharacterBody2D" groups=["player", "rope_vertical"]]
+z_index = 100
+collision_layer = 4
 script = ExtResource("1_wpcda")
 JUMP_VELOCITY = -300.0
 JUMP_TERMINATION_MULTIPLIER = 2
@@ -180,7 +181,7 @@ shape = SubResource("RectangleShape2D_p0ahk")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 editor_description = "Small time frame where player can still jump if he is off the platform"
-wait_time = 0.05
+wait_time = 0.1
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

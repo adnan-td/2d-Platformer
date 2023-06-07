@@ -12,7 +12,7 @@ signal died
 @export_flags_2d_physics var DASH_HAZARD_MASK
 @export var footstepParticles: PackedScene
 
-enum State {NORMAL, DASHING, DISABLED}
+enum State {NORMAL, DASHING, DISABLED, CLIMBING}
 
 
 var playerDeathInstance = null
@@ -23,6 +23,7 @@ var isStateNew = true
 var defaultHazardMask = 0
 var hasDash = false
 var shouldSpawnParticle = false
+var isClimbing = false
 
 func _ready():
 	$HazardArea.connect("area_entered", on_hazard_area_enter)
@@ -37,7 +38,8 @@ func _physics_process(delta):
 			process_dashing(delta)
 		State.DISABLED:
 			process_disabled(delta)
-			
+		State.CLIMBING:
+			process_climbing(delta)
 	isStateNew = false
 	
 func change_state(newState: State):
@@ -91,8 +93,10 @@ func process_normal(delta):
 	
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or !$CoyoteTimer.is_stopped() or hasDoubleJump):
 		velocity.y = JUMP_VELOCITY	
-		if !is_on_floor():
+		if !is_on_floor() and hasDoubleJump and $CoyoteTimer.is_stopped():
 			hasDoubleJump = false
+		elif !$CoyoteTimer.is_stopped():
+			$CoyoteTimer.stop()
 	
 	if not is_on_floor() and !Input.is_action_pressed("jump"):
 		velocity.y += gravity * delta * JUMP_TERMINATION_MULTIPLIER
@@ -108,6 +112,30 @@ func process_normal(delta):
 		hasDash = false 
 		
 	updateAnimation()
+
+func process_climbing(delta):
+	if isStateNew:
+		$DashParticles.emitting = false
+		$HazardArea.collision_mask = defaultHazardMask
+		$DashArea/CollisionShape2D.disabled = true
+	
+	var moveVector = get_movement_vector()
+	
+	velocity.x += moveVector.x * HORIZONTAL_ACCELERATION * delta
+	if moveVector.x == 0:
+		velocity.x = lerp(velocity.x, 0.0, pow(2, -60 * delta))
+	
+	velocity.x = clamp(velocity.x, -SPEED, SPEED)
+
+	velocity.y = lerp(-SPEED, 0.0, pow(2, -60 * delta))
+		
+	hasDoubleJump = true
+	if (hasDash && Input.is_action_just_pressed("dash")):
+		call_deferred("change_state", State.DASHING)
+		hasDash = false 
+		
+	updateAnimation()
+
 
 func _process(_delta):	
 	var was_on_floor = is_on_floor()
@@ -164,3 +192,15 @@ func spawn_footsteps(scale_particle:float = 1.0):
 func on_animated_sprite_frame_changed():
 	if ($AnimatedSprite2D.animation == "run" && $AnimatedSprite2D.frame == 0):
 		spawn_footsteps()
+		
+func on_climbing_start():
+	if !isClimbing:
+		call_deferred("change_state", State.CLIMBING)
+		isClimbing = true
+	
+func on_climbing_end():
+	if isClimbing:
+		call_deferred("change_state", State.NORMAL)
+		isClimbing = false
+		
+		

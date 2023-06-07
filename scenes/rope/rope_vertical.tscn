@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdd43hhu4xgl6"]
+
+[ext_resource type="Texture2D" uid="uid://eik1rv6vgjp8" path="res://assets/rope/tile_0069.png" id="1_hl0h4"]
+[ext_resource type="Script" path="res://scenes/rope/rope_vertical.gd" id="1_pkhek"]
+[ext_resource type="Texture2D" uid="uid://c64wswafl7ex8" path="res://assets/rope/tile_0089.png" id="2_hhmin"]
+[ext_resource type="Texture2D" uid="uid://c4yo3sxud14ia" path="res://assets/rope/tile_0109.png" id="3_aj26e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmg34"]
+size = Vector2(18, 233)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1phcq"]
+texture = ExtResource("1_hl0h4")
+texture_region_size = Vector2i(18, 18)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d5732"]
+texture = ExtResource("2_hhmin")
+texture_region_size = Vector2i(18, 18)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+0:0/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d16ji"]
+texture = ExtResource("3_aj26e")
+texture_region_size = Vector2i(18, 18)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSet" id="TileSet_6fqec"]
+tile_size = Vector2i(18, 18)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Rope"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/6 = SubResource("TileSetAtlasSource_1phcq")
+sources/7 = SubResource("TileSetAtlasSource_d5732")
+sources/8 = SubResource("TileSetAtlasSource_d16ji")
+
+[node name="RopeVertical" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_pkhek")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_mmg34")
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(-9, 0)
+tile_set = SubResource("TileSet_6fqec")
+cell_quadrant_size = 18
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 7, 0, -65536, 7, 0, -131072, 7, 0, 65536, 7, 0, 262144, 7, 0, 196608, 7, 0, 131072, 7, 0, -196608, 7, 0, -262144, 7, 0, -327680, 7, 0, 327680, 8, 0, -393216, 7, 0, -458752, 6, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

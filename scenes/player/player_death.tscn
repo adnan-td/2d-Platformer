@@ -167,11 +167,11 @@ turbulence_noise_scale = 5.25
 anim_speed_max = 1.0
 
 [node name="PlayerDeath" type="CharacterBody2D" groups=["player_death"]]
+z_index = 100
 collision_layer = 0
 script = ExtResource("1_3niom")
 
 [node name="DeathSound1" parent="." instance=ExtResource("2_d2l54")]
-enablePitchRandomization = true
 minPitchScale = 0.8
 maxPitchScale = 1.0
 
@@ -287,6 +287,7 @@ offset = Vector2(0, -12)
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Visuals"]
 material = SubResource("CanvasItemMaterial_3hmpt")
 position = Vector2(10, -6)
+emitting = false
 amount = 15
 process_material = SubResource("ParticleProcessMaterial_j8fwl")
 texture = ExtResource("3_6250u")

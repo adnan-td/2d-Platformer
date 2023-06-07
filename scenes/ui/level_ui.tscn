@@ -13,13 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://07exhtpu3mm6" path="res://assets/ui/buttons/ui-pause1.png" id="11_77jds"]
 [ext_resource type="Texture2D" uid="uid://25kau4okl7ej" path="res://assets/ui/buttons/ui-pause2.png" id="12_in13h"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eck44"]
+size = Vector2(32, 32)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eq76k"]
 size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mbhjm"]
-size = Vector2(32, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eck44"]
 size = Vector2(32, 32)
 
 [node name="LevelUi" type="CanvasLayer"]
@@ -40,16 +40,40 @@ theme_override_constants/margin_bottom = 9
 [node name="CoinLabel" parent="MarginContainer" instance=ExtResource("3_i0jmc")]
 layout_mode = 2
 
+[node name="Container" type="MarginContainer" parent="MarginContainer"]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="MarginContainer/Container"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="MarginContainer/Container/Control"]
+texture_normal = ExtResource("11_77jds")
+texture_pressed = ExtResource("12_in13h")
+shape = SubResource("RectangleShape2D_eck44")
+action = "pause"
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 process_mode = 1
+visible = false
 layout_mode = 2
 size_flags_vertical = 8
+mouse_filter = 2
 
 [node name="LeftRightButtons" type="HBoxContainer" parent="MarginContainer/MarginContainer"]
 custom_minimum_size = Vector2(80, 32)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
+mouse_filter = 2
 
 [node name="Control" type="Control" parent="MarginContainer/MarginContainer/LeftRightButtons"]
 layout_mode = 2
@@ -78,6 +102,7 @@ custom_minimum_size = Vector2(80, 32)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
+mouse_filter = 2
 
 [node name="Control3" type="Control" parent="MarginContainer/MarginContainer/JumpDashButtons"]
 layout_mode = 2
@@ -99,25 +124,5 @@ size_flags_vertical = 0
 texture_normal = ExtResource("8_072t7")
 texture_pressed = ExtResource("9_m8cqa")
 shape = SubResource("RectangleShape2D_mbhjm")
+passby_press = true
 action = "jump"
-
-[node name="Container" type="MarginContainer" parent="MarginContainer"]
-visible = false
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-mouse_filter = 2
-
-[node name="Control" type="Control" parent="MarginContainer/Container"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-mouse_filter = 2
-
-[node name="TouchScreenButton" type="TouchScreenButton" parent="MarginContainer/Container/Control"]
-texture_normal = ExtResource("11_77jds")
-texture_pressed = ExtResource("12_in13h")
-shape = SubResource("RectangleShape2D_eck44")
-action = "pause"

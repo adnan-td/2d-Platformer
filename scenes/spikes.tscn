@@ -6,6 +6,7 @@
 size = Vector2(12, 6)
 
 [node name="Spikes" type="Node2D"]
+z_index = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16384

@@ -11,6 +11,6 @@ func _ready():
 		AudioServer.get_bus_volume_db(busIndex)
 	)
 
-func _on_value_changed(value: float):
-	AudioServer.set_bus_volume_db(busIndex, linear_to_db(value))
+func _on_value_changed(currentvalue: float):
+	AudioServer.set_bus_volume_db(busIndex, linear_to_db(currentvalue))
 	

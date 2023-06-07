@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dw4l1wue51ve1"]
+[gd_scene load_steps=8 format=3 uid="uid://d2whdh7pdt5ri"]
 
 [ext_resource type="Theme" uid="uid://ciyq1jq3i4s2u" path="res://resources/theme/main_theme.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://ooqsmbio75ea" path="res://scenes/ui/AnimatedButton.tscn" id="2"]

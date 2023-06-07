@@ -75,12 +75,14 @@ pause={
 
 [input_devices]
 
+buffering/agile_event_flushing=true
 pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 
 2d_physics/layer_1="Terrain"
 2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Rope_Up_Down"
 2d_physics/layer_13="Enemy Hazard"
 2d_physics/layer_14="Enemy Goal"
 2d_physics/layer_15="Hazard"
