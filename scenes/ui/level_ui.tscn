@@ -55,11 +55,12 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="MarginContainer/Container/Control"]
+[node name="PauseButton" type="TouchScreenButton" parent="MarginContainer/Container/Control"]
 texture_normal = ExtResource("11_77jds")
 texture_pressed = ExtResource("12_in13h")
 shape = SubResource("RectangleShape2D_eck44")
 action = "pause"
+visibility_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 process_mode = 1
@@ -85,6 +86,7 @@ texture_normal = ExtResource("3_ysgf8")
 texture_pressed = ExtResource("4_jfpfe")
 shape = SubResource("RectangleShape2D_eq76k")
 action = "move_left"
+visibility_mode = 1
 
 [node name="Control2" type="Control" parent="MarginContainer/MarginContainer/LeftRightButtons"]
 layout_mode = 2
@@ -96,6 +98,7 @@ texture_normal = ExtResource("5_tqp11")
 texture_pressed = ExtResource("6_xfumd")
 shape = SubResource("RectangleShape2D_mbhjm")
 action = "move_right"
+visibility_mode = 1
 
 [node name="JumpDashButtons" type="HBoxContainer" parent="MarginContainer/MarginContainer"]
 custom_minimum_size = Vector2(80, 32)
@@ -109,20 +112,22 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="MarginContainer/MarginContainer/JumpDashButtons/Control3"]
+[node name="DashButton" type="TouchScreenButton" parent="MarginContainer/MarginContainer/JumpDashButtons/Control3"]
 texture_normal = ExtResource("7_o5kyg")
 texture_pressed = ExtResource("8_h115h")
 shape = SubResource("RectangleShape2D_eq76k")
 action = "dash"
+visibility_mode = 1
 
 [node name="Control4" type="Control" parent="MarginContainer/MarginContainer/JumpDashButtons"]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
 
-[node name="TouchScreenButton2" type="TouchScreenButton" parent="MarginContainer/MarginContainer/JumpDashButtons/Control4"]
+[node name="JumpButton" type="TouchScreenButton" parent="MarginContainer/MarginContainer/JumpDashButtons/Control4"]
 texture_normal = ExtResource("8_072t7")
 texture_pressed = ExtResource("9_m8cqa")
 shape = SubResource("RectangleShape2D_mbhjm")
 passby_press = true
 action = "jump"
+visibility_mode = 1

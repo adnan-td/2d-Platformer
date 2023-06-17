@@ -11,9 +11,10 @@ func _ready():
 	optionsButton.connect("pressed", on_options_pressed)
 	quitButton.connect("pressed", on_quit_pressed)
 	get_tree().paused = true
+	
 
 func _unhandled_input(event):
-	if (event.is_action_pressed("pause")):
+	if (event.is_action_pressed("pause") and get_tree().paused == true):
 		unpause()
 		get_viewport().set_input_as_handled()
 

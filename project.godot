@@ -29,7 +29,7 @@ gdscript/warnings/unused_parameter=0
 
 [display]
 
-window/size/viewport_width=480
+window/size/viewport_width=540
 window/size/viewport_height=270
 window/size/window_width_override=1024
 window/size/window_height_override=570
@@ -76,7 +76,6 @@ pause={
 [input_devices]
 
 buffering/agile_event_flushing=true
-pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 

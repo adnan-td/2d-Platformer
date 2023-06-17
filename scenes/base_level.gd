@@ -55,7 +55,6 @@ func on_player_won():
 	add_child(levelcompletescene)
 	
 func _unhandled_input(event):
-	if event.is_action_pressed("pause"):
+	if get_tree().paused == false and event.is_action_pressed("pause"):
 		var pauseInstance = pauseScene.instantiate()
 		add_child(pauseInstance)
-		
