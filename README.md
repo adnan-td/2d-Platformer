@@ -2,7 +2,7 @@
 
 2D Platformer game build using Godot 4
 
-Try it out now on itch.io  <a href="https://adnan-td.itch.io/pixel-alien">`click here`</a>
+Try it out now on itch.io  <a href="https://adnan-td.itch.io/pixel-alien" target="_blank" rel="noreferrer">`click here`</a>
 
 Enjoyed every second of making this project come to life. Here are few screenshots:
 
